@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "8.0.0"
+  },
   "name": "todo-api",
   "version": "1.0.0",
   "description": "",
@@ -7,9 +10,6 @@
     "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
-  },
-  "engines": {
-    "node": "8.0.0"
   },
   "author": "",
   "license": "ISC",
