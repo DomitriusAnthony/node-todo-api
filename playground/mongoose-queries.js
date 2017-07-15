@@ -30,14 +30,14 @@ const {User} = require('./../server/models/user');
 // 	console.log('Todos', todo);
 // });
 
-var userId = '5966904102279b6a25c79f69'
+// var userId = '5966904102279b6a25c79f69'
 
-User.findById(userId).then((user) => {
-	if(!user) {
-		return console.log("Id is not valid");
-	}
+// User.findById(userId).then((user) => {
+// 	if(!user) {
+// 		return console.log("Id is not valid");
+// 	}
 	
-	console.log(JSON.stringify(user, undefined, 2));
-}, (e) => {
-	console.log(e);
-});
+// 	console.log(JSON.stringify(user, undefined, 2));
+// }, (e) => {
+// 	console.log(e);
+// });
