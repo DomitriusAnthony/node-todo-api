@@ -39,7 +39,6 @@ UserSchema.methods.toJSON = function () {
 	return _.pick(userObject, ['_id', 'email']);
 };
 
-
 UserSchema.methods.generateAuthToken = function () {
 	var user = this;
 	var access = 'auth';
@@ -54,6 +53,29 @@ UserSchema.methods.generateAuthToken = function () {
 		return token;
 	});
 };
+
+// statics is like methods but it adds on model methods and not instance methods
+UserSchema.statics.findByToken = function (token) {
+	var User = this;
+	var decoded;
+
+	try {
+		decoded = jwt.verify(token, 'abc123');
+	} catch (e) {
+		// return new Promise((resolve, reject) => {
+		// 	reject();
+		// }) this is the same as below
+		return Promise.reject()
+	}
+
+	return User.findOne({
+		'_id': decoded._id,
+		'tokens.token': token,
+		'tokens.access': 'auth'
+	});
+}
+
+
 
 var User = mongoose.model('User', UserSchema);
 module.exports = {User};
