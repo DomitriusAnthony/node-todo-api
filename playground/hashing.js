@@ -1,37 +1,41 @@
 const {SHA256} = require('crypto-js');
 const jwt = require('jsonwebtoken');
-
+const bcrypt = require('bcryptjs');
 // header 
 // payload
 // hash
 
 
-var data = {
-	id: 10
-};
+var password = '123abc';
+// first argument is number of rounds. bigger the number, the longer it takes so someone can't brute force the calls
+// bcrypt.genSalt(10, (err, salt) => {
+// 	bcrypt.hash(password, salt, (err, hash) => {
+// 		console.log(hash);
+// 	})
+// });
+
+var hashedPassword = '$2a$10$nQLpBq1u8AqhD.XwR7BTAuk4CvCay98gy1YcI3AFhXdZ/dXulSTIW'
 
 
-// takes the object (data) and it signs. Creates hash and signs it returning token value
-var token = jwt.sign(data, '123abc');
-console.log(token);
-
-
-// takes that token and secret and makes sure the data was not manipulated
-var decoded = jwt.verify(token, '123abc');
-console.log('decoded', decoded);
-
-
-
-
+bcrypt.compare(password, hashedPassword, (err, res) => {
+	console.log(res);
+});
 
 
 
+// var data = {
+// 	id: 10
+// };
 
 
+// // takes the object (data) and it signs. Creates hash and signs it returning token value
+// var token = jwt.sign(data, '123abc');
+// console.log(token);
 
 
-
-
+// // takes that token and secret and makes sure the data was not manipulated
+// var decoded = jwt.verify(token, '123abc');
+// console.log('decoded', decoded);
 
 
 
